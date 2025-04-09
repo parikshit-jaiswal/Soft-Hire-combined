@@ -20,8 +20,8 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         round: "rounded-3xl bg-[#326789] text-white font-semibold hover:bg-white hover:text-[#326789] border-2 border-[#326789] hover:font-bold",
-        hero1: "rounded-3xl bg-white text-[#E65C4F]  text-[1.1rem] border-[2px] border-[#E65C4F] hover:text-[#cd2c1d] hover:border-[#cd2c1d] hover:border-[3.1px]",
-        hero2: "rounded-3xl bg-[#E65C4F] text-white text-[1.1rem] hover:bg-[#cd2c1d]",
+        hero1: "sm:rounded-3xl rounded-2xl bg-white text-[#E65C4F]  text-[1.1rem] border-[2px] border-[#E65C4F] hover:text-[#cd2c1d] hover:border-[#cd2c1d] hover:border-[3.1px]",
+        hero2: "sm:rounded-3xl rounded-2xl bg-[#E65C4F] text-white text-[1.1rem] hover:bg-[#cd2c1d]",
       },
       size: {
         default: "h-9 px-4 py-2",
@@ -29,7 +29,7 @@ const buttonVariants = cva(
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
         round: "h-10 py-2 px-4",
-        hero: "h-14 w-[10rem] py-3 px-5",
+        hero: "sm:h-14 sm:w-[10rem] h-12 w-[8rem] py-3 px-5",
       },
     },
     defaultVariants: {

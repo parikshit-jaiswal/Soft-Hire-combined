@@ -17,16 +17,16 @@ const sponsorEligibilityRoutes = require("./routes/sponsorEligibilityRoutes");
 const Salary = require('./models/Salary'); // Adjust the path if needed
 const consultRoutes = require("./routes/consult");
 const contactRoutes = require("./routes/contactRoutes");
-const iscRoutes= require("./routes/isc");
+const iscRoutes = require("./routes/isc");
 const sponsorLicenceRoutes = require("./routes/sponsorLicenceRoutes");
+const path = require("path");
 
 
 const app = express();
 
-// ✅ Ensure required environment variables are set
 if (!process.env.MONGO_URI || !process.env.SESSION_SECRET) {
-    console.error("❌ Missing required environment variables. Check your .env file.");
-    process.exit(1);
+  console.error("❌ Missing required environment variables. Check your .env file.");
+  process.exit(1);
 }
 
 // ✅ Middleware
@@ -64,11 +64,18 @@ app.use(passport.session());
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() =>
-  console.log("✅ MongoDB Connected"))
+    console.log("✅ MongoDB Connected"))
   .catch((err) => {
     console.error("❌ MongoDB Connection Error:", err);
     process.exit(1);
   });
+
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
 
 // ✅ Routes
 app.use("/api/auth", authRoutes);
@@ -80,12 +87,12 @@ app.use("/api/sponsor", sponsorEligibilityRoutes);
 app.use('/api/salary', salaryRoutes);
 app.use("/api", consultRoutes);
 app.use("/api", contactRoutes); // Prefix for all routes in contactRoutes.js
-app.use("/api/isc",iscRoutes);
+app.use("/api/isc", iscRoutes);
 app.use("/api", sponsorLicenceRoutes);
 // ✅ Health check
 app.get("/health", (req, res) => res.json({ status: "ok" }));
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("SoftHire API is running...");
 });
 
@@ -93,3 +100,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on port ${PORT}`);
 });
+// ✅ Ensure required environment variables are set

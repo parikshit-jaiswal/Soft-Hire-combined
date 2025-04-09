@@ -1,242 +1,129 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
-import { useMediaQuery } from 'react-responsive';
+
+const tabs = [
+    { id: 1, name: 'All Articles' },
+    { id: 2, name: 'UI Design' },
+    { id: 3, name: 'Interviews' },
+    { id: 4, name: 'UX Design' },
+    { id: 5, name: '+6 More' },
+];
+
+const faqs = [
+    {
+        id: 1,
+        category: 'All Articles',
+        question: "Why do I need a Sponsorship License?",
+        answer: "A Skilled Worker Sponsor License allows your business to recruit from outside the UK. It involves making an application to the Home Office. We can assist with this [include link here]."
+    },
+    {
+        id: 2,
+        category: 'All Articles',
+        question: "What is the cost of a Sponsorship License?",
+        answer: "Currently, the Home Office fee to obtain a sponsorship license in the UK is £536 for small or charitable sponsors and £1,476 for medium or large sponsors. See our Sponsorship License cost calculator (Link) to see which one applies to you"
+    },
+    {
+        id: 3,
+        category: 'All Articles',
+        question: "Is there any limit to the number of workers I can sponsor?",
+        answer: "No. There is no limit to the number of sponsorships a Skilled Worker Visa sponsor can give, provided the employees meet all relevant eligibility requirements. "
+    },
+    {
+        id: 4,
+        category: 'All Articles',
+        question: "What is a Certificate of Sponsorship?",
+        answer: "A Certificate of Sponsorship (CoS) is an electronic certificate an employer with a sponsorship license needs to assign to any worker they intend to sponsor. It is the second step to go through to hire foreign talent after obtaining a Skiller Worker Visa Sponsor We can assist with this.  "
+    },
+    {
+        id: 5,
+        category: 'All Articles',
+        question: "Why do I need a Skilled Worker Sponsor License? ",
+        answer: "If you want to have the ability to hire skilled non-UK citizens or permanent residents for your business, you will need a Skilled Worker Sponsor License. More information on how we can help here [Add Link to our Skilled Worker Sponsorship Page]. "
+    },
+    {
+        id: 6,
+        category: 'All Articles',
+        question: "What roles can I hire for with a Skilled Worker Sponsorship License?",
+        answer: <>The full list of roles is comprehensive, although different requirements apply to some categories than others – the full list of eligible occupations is set out here <a className='block text-blue-800 hover:underline' href="https://www.gov.uk/government/publications/skilled-worker-visa-eligible-occupations/skilled-worker-visa-eligible-occupations-and-codes" target="_blank" rel="noopener noreferrer">https://www.gov.uk/government/publications/skilled-worker-visa-eligible-occupations/skilled-worker-visa-eligible-occupations-and-codes</a>.</>
+    },
+    {
+        id: 7,
+        category: 'All Articles',
+        question: "Can you help me with a compliance audit??",
+        answer: "Yes. Using our compliance systems will ensure you are up to date with Home Office requirements and sail through most compliance audit questions and be prepared for unexpected compliance visits. "
+    },
+    {
+        id: 8,
+        category: 'All Articles',
+        question: "Can you help me recruit talent?",
+        answer: "We will be able to connect you with talented Software Engineers from outside the UK looking for opportunities in the UK. We are aiming to expand this offering to other industries soon. If you already have a foreign worker you want to hire who you have identified, we can handle their visa and immigration process for you regardless of industry."
+    },
+
+];
+
 
 const FAQSection = () => {
-
-    const sm = useMediaQuery({ query: '(min-width:768px)' })
-
     const [activeTab, setActiveTab] = useState('All Articles');
+    const [activeQuestion, setActiveQuestion] = useState(faqs[0].id);
 
-    const [activeQuestion, setActiveQuestion] = useState(
-        'Do I need to pay to Instapay even when there is no transaction going on in my business?'
-    );
+    // const filteredFAQs = activeTab === 'All Articles' ? faqs : faqs.filter(faq => faq.category === activeTab);
+    const filteredFAQs = faqs;
 
-    const tabs = [
-        { id: 1, name: 'All Articles', isActive: true },
-        { id: 2, name: 'UI Design', isActive: false },
-        { id: 3, name: 'Interviews', isActive: false },
-        { id: 4, name: 'UX Design', isActive: false },
-        { id: 5, name: '+6 More', isActive: false },
-    ];
-
-    const faqs = [
-        {
-            question: "What is a Payment Gateway?",
-            answer: "A payment gateway is a technology that enables secure online transactions by authorizing and processing payments between merchants and customers. It acts as a bridge between a customer's bank and the merchant's payment processor."
-        },
-        {
-            question: "Do I need to pay to Instapay even when there is no transaction going on in my business?",
-            answer: "No, you do not need to pay Instapay where there is no transaction happening. With one of the lowest transaction charges in the industry, pay only when you get paid!"
-        },
-        {
-            question: "What platforms does ACME payment gateway support?",
-            answer: "ACME payment gateway supports multiple platforms, including websites, mobile apps (iOS and Android), and e-commerce platforms such as Shopify, WooCommerce, and Magento."
-        },
-        {
-            question: "Does ACME provide international payments support?",
-            answer: "Yes, ACME payment gateway supports international transactions, allowing businesses to accept payments from customers worldwide in multiple currencies."
-        },
-        {
-            question: "Is there any setup fee or annual maintenance fee that I need to pay regularly?",
-            answer: "No, ACME payment gateway does not charge any setup fee or annual maintenance fee. You only pay a transaction fee when a payment is processed."
+    useEffect(() => {
+        if (filteredFAQs.length > 0) {
+            setActiveQuestion(filteredFAQs[0].id);
         }
-    ];
-
+    }, [activeTab]);
 
     return (
-        <>
-            {sm ?
-                <div className="max-w-[98%] mx-auto py-8 mt-[5rem]">
-                    <h1 className="text-4xl font-semibold text-[#353E5C] mb-12 text-center">
-                        Frequently asked Questions
-                    </h1>
+        <div className="bg-[#f4f4f5] min-h-screen flex flex-col items-center py-16 px-4">
+            <div className="bg-[#353e5c] text-white px-6 py-2 rounded-full inline-block mb-4">FAQs</div>
+            <h1 className="text-3xl md:text-4xl font-semibold text-gray-700 mb-12 text-center mt-4">
+                Frequently Asked Questions
+            </h1>
 
-                    {/* Tabs */}
-                    <div className="flex gap-3 mb-16 text-center justify-center overflow-x-scroll hide-scroll">
-                        {tabs.map((tab) => (
-                            <button
-                                key={tab.id}
-                                onClick={() => setActiveTab(tab.name)}
-                                className={`px-6 py-2 text-nowrap rounded-full text-sm font-medium 
-              ${activeTab === tab.name
-                                        ? 'bg-[#353E5C] text-white'
-                                        : 'bg-white text-[#353E5C] border border-gray-200 hover:border-[#353E5C]'
-                                    }`}
-                            >
-                                {tab.name}
-                            </button>
-                        ))}
-                    </div>
+            <div className="flex flex-wrap justify-center gap-3 mb-12 mt-8 max-w-4xl w-full">
+                {tabs.map(tab => (
+                    <button
+                        key={tab.id}
+                        className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors duration-200 ${activeTab === tab.name ? 'bg-gray-700 text-white' : 'text-gray-700 border border-[#797f92] hover:bg-gray-100'}`}
+                        onClick={() => setActiveTab(tab.name)}
+                    >
+                        {tab.name}
+                    </button>
+                ))}
+            </div>
 
-                    {/* FAQ Layout */}
-                    <div className="flex gap-8">
-                        {/* Left Column - Questions List */}
-                        <div className="w-1/2 flex flex-col gap-6">
-                            {faqs.map((faq) => (
-                                <button
-                                    key={faq.question}
-                                    className={`flex items-center justify-between p-4 text-left rounded-lg transition-all
-                ${activeQuestion === faq.question
-                                            ? 'bg-white shadow-lg'
-                                            : 'hover:bg-gray-50'
-                                        }`}
-                                    onClick={() => setActiveQuestion(faq.question)}
-                                >
-                                    <span className="font-medium text-gray-900">{faq.question}</span>
-                                    <ChevronRight
-                                        className={`w-5 h-5 text-gray-400 transition-transform
-                  ${activeQuestion === faq.question ? 'rotate-90' : ''}`}
-                                    />
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* Right Column - Answer Display */}
-                        <div className="w-1/2 bg-white rounded-2xl p-8 shadow-lg">
-                            <h2 className="text-xl font-semibold text-gray-900 mb-6">
-                                {activeQuestion}
-                            </h2>
-                            <p className="text-gray-600 leading-relaxed">
-                                {faqs.find(faq => faq.question === activeQuestion)?.answer}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                :
-                <div className="max-w-4xl mx-auto p-6">
-                    <h1 className="text-3xl font-semibold text-[#2d3748] mb-8 text-center">
-                        Frequently asked Questions
-                    </h1>
-
-                    {/* Tabs */}
-                    <div className="flex pl-[10%] gap-3 mb-16 text-center justify-center overflow-x-scroll hide-scroll w-[100%]">
-                        {tabs.map((tab) => (
-                            <button
-                                key={tab.id}
-                                onClick={() => setActiveTab(tab.name)}
-                                className={`px-6 py-2  text-nowrap rounded-full text-sm font-medium 
-              ${activeTab === tab.name
-                                        ? 'bg-[#353E5C] text-white'
-                                        : 'bg-white text-[#353E5C] border border-gray-200 hover:border-[#353E5C]'
-                                    }`}
-                            >
-                                {tab.name}
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* FAQ Items */}
-                    <div className="flex flex-col gap-4">
-                        {faqs.map((faq) => (
-                            <div key={faq.question} className="border rounded-lg overflow-hidden">
-                                <button
-                                    className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50"
-                                    onClick={() => setActiveQuestion(
-                                        activeQuestion === faq.question ? '' : faq.question
-                                    )}
-                                >
-                                    <span className="font-medium text-[#2d3748]">{faq.question}</span>
-                                    <span className="ml-4">
-                                        {activeQuestion === faq.question ? '−' : '+'}
-                                    </span>
-                                </button>
-
-                                {activeQuestion === faq.question && (
-                                    <div className="p-4 bg-gray-50 border-t">
-                                        <p className="text-gray-600">{faq.answer}</p>
-                                    </div>
-                                )}
+            <div className="max-w-7xl w-full p-1 relative flex flex-col md:flex-row items-center md:items-start justify-center gap-4">
+                <div className="my-auto w-full md:w-[648px] bg-white border border-gray-200 flex flex-col">
+                    {filteredFAQs.map(faq => (
+                        <div
+                            key={faq.id}
+                            className={`p-4 cursor-pointer flex justify-between items-center group transition-colors ${activeQuestion === faq.id ? 'bg-[#fbfaff]' : 'hover:bg-gray-50'}`}
+                            onClick={() => setActiveQuestion(faq.id)}
+                        >
+                            <div className="flex items-center">
+                                <div className={`h-5 w-5 rounded-full bg-[#f4f4f5] flex-shrink-0 transition-colors ${activeQuestion === faq.id ? 'bg-black' : 'group-hover:bg-[#5c5fee]'}`}></div>
+                                <p className={`${activeQuestion === faq.id ? 'font-medium' : ''} ml-2`}>{faq.question}</p>
                             </div>
-                        ))}
-                    </div>
+                            <div className={`transition-colors ${activeQuestion === faq.id ? 'text-black' : 'text-gray-400 group-hover:text-[#5c5fee]'}`}>
+                                <ChevronRight />
+                            </div>
+                        </div>
+                    ))}
                 </div>
-            }
-        </>
+
+                <div className="w-full md:w-[648px] h-[472px] bg-[#fbfaff] border border-gray-200 rounded-xl p-10 transition-opacity duration-500 ease-in-out">
+                    <h2 className="text-xl font-semibold text-gray-800 mb-5">
+                        {faqs.find(faq => faq.id === activeQuestion)?.question}
+                    </h2>
+                    <p className="text-gray-700 leading-relaxed">
+                        {faqs.find(faq => faq.id === activeQuestion)?.answer || "No answer available."}
+                    </p>
+                </div>
+            </div>
+        </div>
     );
 };
 
 export default FAQSection;
-
-// import React, { useState } from 'react';
-
-// const FAQSection = () => {
-//     const [activeTab, setActiveTab] = useState('All Articles');
-//     const [activeQuestion, setActiveQuestion] = useState('');
-
-//     const tabs = ['All Articles', 'UI Design', 'Interviews', 'UX Design', '+6 More'];
-
-//     const faqs = [
-//         {
-//             question: "What is a Payment Gateway?",
-//             answer: "A payment gateway is a technology that processes card payments for online and in-person businesses."
-//         },
-//         {
-//             question: "Do I need to pay to Instapay even when there is no transaction going on in my business?",
-//             answer: "No, you do not need to pay Instapay where there is no transaction happening. With one of the lowest transaction charges in the industry, pay only when you get paid!"
-//         },
-//         {
-//             question: "What platforms does ACME payment gateway support?",
-//             answer: "ACME payment gateway supports all major e-commerce platforms and can be integrated with custom solutions."
-//         },
-//         {
-//             question: "Does ACME provide international payments support?",
-//             answer: "Yes, ACME supports international payments across multiple currencies and regions."
-//         },
-//         {
-//             question: "Is there any setup fee or annual maintainance fee that I need to pay regularly?",
-//             answer: "Contact our sales team for detailed information about our fee structure."
-//         }
-//     ];
-
-//     return (
-//         <div className="max-w-4xl mx-auto p-6">
-//             <h1 className="text-3xl font-semibold text-[#2d3748] mb-8 text-center">
-//                 Frequently asked Questions
-//             </h1>
-
-//             {/* Tabs Section */}
-//             <div className="flex flex-wrap gap-3 mb-8 justify-center">
-//                 {tabs.map((tab) => (
-//                     <button
-//                         key={tab}
-//                         onClick={() => setActiveTab(tab)}
-//                         className={`px-4 py-2 rounded-full text-sm ${activeTab === tab
-//                                 ? 'bg-[#2d3748] text-white'
-//                                 : 'bg-white text-[#2d3748] border border-[#2d3748]'
-//                             }`}
-//                     >
-//                         {tab}
-//                     </button>
-//                 ))}
-//             </div>
-
-//             {/* FAQ Items */}
-//             <div className="flex flex-col gap-4">
-//                 {faqs.map((faq) => (
-//                     <div key={faq.question} className="border rounded-lg overflow-hidden">
-//                         <button
-//                             className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50"
-//                             onClick={() => setActiveQuestion(
-//                                 activeQuestion === faq.question ? '' : faq.question
-//                             )}
-//                         >
-//                             <span className="font-medium text-[#2d3748]">{faq.question}</span>
-//                             <span className="ml-4">
-//                                 {activeQuestion === faq.question ? '−' : '+'}
-//                             </span>
-//                         </button>
-
-//                         {activeQuestion === faq.question && (
-//                             <div className="p-4 bg-gray-50 border-t">
-//                                 <p className="text-gray-600">{faq.answer}</p>
-//                             </div>
-//                         )}
-//                     </div>
-//                 ))}
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default FAQSection;

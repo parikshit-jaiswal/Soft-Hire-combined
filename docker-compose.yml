@@ -1,0 +1,43 @@
+services:
+  mongo:
+    image: mongo:6
+    container_name: mongodb
+    volumes:
+      - ./data:/data/db
+    networks:
+      - internal
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: Rudra:12345
+
+  backend:
+    build: ./backend
+    container_name: backend
+    depends_on:
+      - mongo
+    networks:
+      - internal
+    environment:
+      MONGO_URI: mongodb://root:Rudra:12345@mongo:27017/softhire?authSource=admin
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    depends_on:
+      - backend
+    networks:
+      - internal
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge

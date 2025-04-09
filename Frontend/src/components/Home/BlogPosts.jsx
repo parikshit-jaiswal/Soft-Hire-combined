@@ -35,7 +35,7 @@ const BlogPosts = () => {
         >
           <div className="rounded-lg p-6 flex-shrink-0 w-80 md:w-auto md:flex-1 flex flex-col  snap-center">
             <img
-              src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&h=200&q=80"
+              src="/hero/blogImg1.png"
               alt="Office workspace"
               className="w-full h-60 object-cover rounded-lg mb-4"
             />
@@ -48,26 +48,26 @@ const BlogPosts = () => {
 
           <div className="rounded-lg p-6 flex-shrink-0 w-80 md:w-auto md:flex-1 flex flex-col  snap-center">
             <img
-              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&h=200&q=80"
+              src="/hero/blogImg2.png"
               alt="Person with laptop"
               className="w-full h-60 object-cover rounded-lg mb-4"
             />
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">The Future of International Tech Hiring in 2025</h2>
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">Navigating UK Work Visa Requirements in 2025</h2>
             <p className="text-gray-600 mt-2">
-              Discover emerging trends in global software recruitment, visa regulations, and remote hiring strategies.
+              Understand the latest updates to UK Skilled Worker visa policies and what employers and candidates need to know before applying.
             </p>
             <a href="#" className="text-red-500 mt-4 hover:underline w-fit flex items-center">Read More <p className='mt-[3px]'> <ChevronRight size={24} /></p></a>
           </div>
 
           <div className=" rounded-lg p-6 flex-shrink-0 w-80 md:w-auto md:flex-1 flex flex-col snap-center">
             <img
-              src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&h=200&q=80"
+              src="/hero/blogImg3.png"
               alt="Team collaboration"
               className="w-full h-60 object-cover rounded-lg mb-4"
             />
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">The Future of International Tech Hiring in 2025</h2>
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">How to Become a Licensed Sponsor</h2>
             <p className="text-gray-600 mt-2">
-              Discover emerging trends in global software recruitment, visa regulations, and remote hiring strategies.
+              A comprehensive guide for UK businesses looking to hire global talent legally and efficiently through the sponsor licence route.
             </p>
             <a href="#" className="text-red-500 mt-4 hover:underline w-fit flex items-center">Read More <p className='mt-[3px]'> <ChevronRight size={24} /></p></a>
           </div>

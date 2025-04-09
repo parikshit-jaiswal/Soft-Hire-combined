@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from './ui/button';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     const handleSubmit = (e) => {
@@ -15,7 +16,7 @@ const Footer = () => {
                     <div className="lg:col-span-2">
                         <h2 className="text-2xl font-bold mb-4">Join our Newsletter!</h2>
                         <p className="mb-4 text-sm text-gray-200">
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+                            Stay updated with the latest hiring trends, immigration news, and expert tips—delivered straight to your inbox."
                         </p>
                         <form onSubmit={handleSubmit} className="mb-4">
                             <div className="flex flex-col sm:flex-row gap-3">
@@ -111,8 +112,14 @@ const Footer = () => {
                 </div>
 
                 {/* Logo */}
-                <div className="mt-8 md:mt-12 text-center md:text-right">
-                    <img className='h-12 lg:h-16' src="/softHireLogo.png" alt="SOFTHIRE" />
+                <div className=" flex flex-wrap justify-between items-center mt-8 md:mt-12 text-center md:text-right">
+                    <div className="flex gap-10">
+                        <p>Copyright © 2025 Softhire</p>
+                        <Link to="/privacy-policy" className="hover:underline cursor-pointer hover:opacity-70">Privacy policy</Link>
+                    </div>
+                    {/* <img className='h-12 lg:h-16' src="/softHireLogo.png" alt="SOFTHIRE" /> */}
+                    <img className='h-12 lg:h-16 mt-5 sm:mt-0 ' src="/softHireWhite.png" alt="" />
+
                 </div>
             </div>
         </footer>

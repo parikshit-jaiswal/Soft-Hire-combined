@@ -8,7 +8,6 @@ import ServicesSection from '@/components/Home/ServicesSection'
 import SkillsSlider from '@/components/Home/SkillsSlider'
 import Solutions from '@/components/Home/Solutions'
 import Navbar from '@/components/Navbar.jsx'
-import React from 'react'
 
 
 function Home() {
@@ -28,9 +27,7 @@ function Home() {
             </div>
             <FeedbackSection />
             <BlogPosts />
-            <div className="px-[3%] md:px-[7%] " >
-                <FAQSection />
-            </div>
+            <FAQSection />
             <Footer />
 
         </div>
